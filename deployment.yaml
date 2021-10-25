@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: myapp-one
-          image: chill38/myapp_one:v2
+          image: chill38/myapp_one:v5
           env:
             - name: DB_URI
               value: root:masterkey@tcp(mysql)
@@ -23,16 +23,16 @@ spec:
           ports:
             - name: web
               containerPort: 8000
-          #livenessProbe:
-          #  httpGet:
-          #    port: 8080
-          #    path: /
-          #  initialDelaySeconds: 10
-          #  periodSeconds: 5
-          #  timeoutSeconds: 2
-          #readinessProbe:
-          #  httpGet:
-          #    port: 8080
-          #    path: /health
-          #  initialDelaySeconds: 10
-          #  periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /health
+            initialDelaySeconds: 10
+            periodSeconds: 5
