@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-one-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp-one
+  template:
+    metadata:
+      labels:
+        app: myapp-one
+    spec:
+      containers:
+        - name: myapp-one
+          image: chill38/myapp_one:v2
+          env:
+            - name: DB_URI
+              value: root:masterkey@tcp(mysql)
+            - name: DB
+              value: myapp
+          ports:
+            - name: web
+              containerPort: 8000
+          #livenessProbe:
+          #  httpGet:
+          #    port: 8080
+          #    path: /
+          #  initialDelaySeconds: 10
+          #  periodSeconds: 5
+          #  timeoutSeconds: 2
+          #readinessProbe:
+          #  httpGet:
+          #    port: 8080
+          #    path: /health
+          #  initialDelaySeconds: 10
+          #  periodSeconds: 5

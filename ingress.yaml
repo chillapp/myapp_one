@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-one-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - path: /otusapp/aleksandr-khakimov($|/)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp-one-service
+                port:
+                  number: 9000
+    - host: arch.homework
+      http:
+        paths:
+          - path: /($|)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp-one-service
+                port:
+                  number: 9000

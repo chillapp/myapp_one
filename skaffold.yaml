@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta24
+kind: Config
+metadata:
+  name: configuration
+build:
+  artifacts:
+  - image: chill38/myapp_one
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    #- mysql.yaml
+    - deployment.yaml
+    - service.yaml
+    - ingress.yaml
