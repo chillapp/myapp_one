@@ -117,6 +117,7 @@ func insertRow(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write([]byte(response))
 }
 
+// Endpoint для получения конфига
 func getConfig(w http.ResponseWriter, r *http.Request) {
 	data, _ := json.Marshal(config)
 	_, _ = w.Write(data)
